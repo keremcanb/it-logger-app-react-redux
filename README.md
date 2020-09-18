@@ -1,6 +1,6 @@
 # IT Logger React App
 
-An IT logger app for system administrators
+An IT logger app for technicians
 
 Libraries used are Redux, Redux Thunk, Moment, Materialize
 

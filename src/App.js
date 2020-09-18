@@ -12,7 +12,6 @@ import TechListModal from './components/techs/TechListModal';
 // import store from './store';
 
 import 'materialize-css/dist/css/materialize.min.css';
-import './App.css';
 
 const App = () => {
   useEffect(() => {
