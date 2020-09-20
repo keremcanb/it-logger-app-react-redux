@@ -5,7 +5,7 @@ import {
   ADD_LOG,
   DELETE_LOG,
   UPDATE_LOG,
-  // SEARCH_LOGS,
+  SEARCH_LOGS,
   SET_CURRENT,
   CLEAR_CURRENT,
 } from '../actions/types';
@@ -38,6 +38,8 @@ export default function (state = initialState, action) {
       return { ...state, current: payload };
     case CLEAR_CURRENT:
       return { ...state, current: null };
+    case SEARCH_LOGS:
+      return { ...state, logs: payload };
     case LOGS_ERROR:
       return { ...state, error: payload };
     default:
