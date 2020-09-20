@@ -4,10 +4,10 @@ import {
   LOGS_ERROR,
   ADD_LOG,
   DELETE_LOG,
-  // UPDATE_LOG,
+  UPDATE_LOG,
   // SEARCH_LOGS,
-  // SET_CURRENT,
-  // CLEAR_CURRENT,
+  SET_CURRENT,
+  CLEAR_CURRENT,
 } from '../actions/types';
 
 const initialState = { logs: null, curent: null, loading: false, error: null };
@@ -28,6 +28,16 @@ export default function (state = initialState, action) {
         logs: state.logs.filter((log) => log.id !== payload),
         loading: false,
       };
+    case UPDATE_LOG:
+      return {
+        ...state,
+        logs: state.logs.map((log) => (log.id === payload.id ? payload : log)),
+        loading: false,
+      };
+    case SET_CURRENT:
+      return { ...state, current: payload };
+    case CLEAR_CURRENT:
+      return { ...state, current: null };
     case LOGS_ERROR:
       return { ...state, error: payload };
     default:
