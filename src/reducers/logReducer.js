@@ -3,7 +3,7 @@ import {
   SET_LOADING,
   LOGS_ERROR,
   ADD_LOG,
-  // DELETE_LOG,
+  DELETE_LOG,
   // UPDATE_LOG,
   // SEARCH_LOGS,
   // SET_CURRENT,
@@ -18,10 +18,16 @@ export default function (state = initialState, action) {
   switch (type) {
     case SET_LOADING:
       return { ...state, loading: true };
-    case ADD_LOG:
-      return { ...state, logs: [...state.logs, payload], loading: false };
     case GET_LOGS:
       return { ...state, logs: payload, loading: false };
+    case ADD_LOG:
+      return { ...state, logs: [...state.logs, payload], loading: false };
+    case DELETE_LOG:
+      return {
+        ...state,
+        logs: state.logs.filter((log) => log.id !== payload),
+        loading: false,
+      };
     case LOGS_ERROR:
       return { ...state, error: payload };
     default:

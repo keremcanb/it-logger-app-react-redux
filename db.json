@@ -8,11 +8,11 @@
       "id": 1
     },
     {
-      "message": "deneme2",
-      "attention": false,
-      "tech": "Sarah Wilson",
-      "date": "2020-09-20T17:36:00.240Z",
-      "id": 2
+      "message": "deneme3",
+      "attention": true,
+      "tech": "John Doe",
+      "date": "2020-09-20T17:37:49.724Z",
+      "id": 3
     }
   ],
   "techs": [

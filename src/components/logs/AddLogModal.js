@@ -82,7 +82,7 @@ const AddLogModal = ({ addLog }) => {
                   className='filled-in'
                   checked={attention}
                   value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  onChange={() => setAttention(!attention)}
                 />
                 <span>Needs Attention</span>
               </label>

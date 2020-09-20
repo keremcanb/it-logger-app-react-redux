@@ -3,7 +3,7 @@ import {
   SET_LOADING,
   LOGS_ERROR,
   ADD_LOG,
-  // DELETE_LOG,
+  DELETE_LOG,
   // UPDATE_LOG,
   // SEARCH_LOGS,
   // SET_CURRENT,
@@ -54,6 +54,27 @@ export const addLog = (log) => async (dispatch) => {
     dispatch({
       type: ADD_LOG,
       payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+// Delete log
+export const deleteLog = (id) => async (dispatch) => {
+  try {
+    setLoading();
+
+    await fetch(`/logs/${id}`, {
+      method: 'DELETE',
+    });
+
+    dispatch({
+      type: DELETE_LOG,
+      payload: id,
     });
   } catch (err) {
     dispatch({
