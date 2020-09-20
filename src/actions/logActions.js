@@ -10,12 +10,14 @@ import {
   // CLEAR_CURRENT,
 } from './types';
 
+// Set loading to true
 export const setLoading = () => {
   return {
     type: SET_LOADING,
   };
 };
 
+// Get logs from server
 export const getLogs = () => async (dispatch) => {
   try {
     setLoading();
