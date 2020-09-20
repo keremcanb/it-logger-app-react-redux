@@ -1,7 +1,7 @@
 import {
-  GET_LOGS
-  // SET_LOADING,
-  // LOGS_ERROR,
+  GET_LOGS,
+  SET_LOADING,
+  LOGS_ERROR,
   // ADD_LOG,
   // DELETE_LOG,
   // UPDATE_LOG,
@@ -10,18 +10,27 @@ import {
   // CLEAR_CURRENT,
 } from './types';
 
+export const setLoading = () => {
+  return {
+    type: SET_LOADING,
+  };
+};
+
 export const getLogs = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/');
+    setLoading();
+
+    const res = await fetch('/logs/');
+    const data = await res.json();
 
     dispatch({
-      type: GET_LOGS
-      payload: res.data,
+      type: GET_LOGS,
+      payload: data,
     });
   } catch (err) {
     dispatch({
-      type: hede,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      type: LOGS_ERROR,
+      payload: err.response.data,
     });
   }
 };

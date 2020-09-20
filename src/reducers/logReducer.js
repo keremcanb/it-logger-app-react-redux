@@ -1,7 +1,7 @@
 import {
   GET_LOGS,
-  // SET_LOADING,
-  // LOGS_ERROR,
+  SET_LOADING,
+  LOGS_ERROR,
   // ADD_LOG,
   // DELETE_LOG,
   // UPDATE_LOG,
@@ -10,14 +10,18 @@ import {
   // CLEAR_CURRENT,
 } from '../actions/types';
 
-const initialState = [];
+const initialState = { logs: null, curent: null, loading: false, error: null };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case SET_LOADING:
+      return { ...state, loading: true };
     case GET_LOGS:
-      return [...state, payload];
+      return { ...state, logs: payload, loading: false };
+    case LOGS_ERROR:
+      return { ...state, error: payload };
     default:
       return state;
   }
