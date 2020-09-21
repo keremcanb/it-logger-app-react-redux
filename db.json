@@ -5,7 +5,7 @@
       "message": "deneme1",
       "attention": true,
       "tech": "Sarah Wilson",
-      "date": "2020-09-20T19:04:45.592Z"
+      "date": "2020-09-21T00:21:15.832Z"
     },
     {
       "message": "deneme3",
@@ -13,6 +13,13 @@
       "tech": "John Doe",
       "date": "2020-09-20T17:37:49.724Z",
       "id": 3
+    },
+    {
+      "message": "rtetere",
+      "attention": false,
+      "tech": "Sam Smith",
+      "date": "2020-09-21T00:21:36.381Z",
+      "id": 4
     }
   ],
   "techs": [

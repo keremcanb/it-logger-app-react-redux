@@ -1,29 +1,29 @@
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { useState, useEffect } from 'react';
-import M from 'materialize-css/dist/js/materialize.min.js';
 // import TechSelectOptions from '../techs/TechSelectOptions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import M from 'materialize-css/dist/js/materialize.min.js';
 import { updateLog } from '../../actions/logActions';
 
-const EditLogModal = ({ updateLog, current }) => {
+const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
-
-  useEffect(() => {
-    if (current) {
-      setMessage(current.message);
-      setTech(current.tech);
-      setAttention(current.attention);
-    }
-  }, [current]);
 
   const modalStyle = {
     width: '75%',
     height: '75%',
   };
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+  }, [current]);
 
   const onSubmit = () => {
     if (message === '' || tech === '') {
@@ -40,7 +40,7 @@ const EditLogModal = ({ updateLog, current }) => {
       updateLog(updLog);
       M.toast({ html: `Log updated by ${tech}` });
 
-      // Clear fields
+      // Clear Fields
       setMessage('');
       setTech('');
       setAttention(false);
@@ -63,20 +63,19 @@ const EditLogModal = ({ updateLog, current }) => {
         </div>
 
         <div className='row'>
-          <input className='input-field' />
-          <select
-            name='tech'
-            value={tech}
-            className='browser-default'
-            onChange={(e) => setTech(e.target.value)}
-          >
-            <option value='' disabled>
-              Select Technician
-            </option>
-            <option value='John Doe'>John Doe</option>
-            <option value='Sam Smith'>Sam Smith</option>
-            <option value='Sarah Wilson'>Sarah Wilson</option>
-          </select>
+          <div className='input-field'>
+            <select
+              name='tech'
+              value={tech}
+              className='browser-default'
+              onChange={(e) => setTech(e.target.value)}
+            >
+              <option value='' disabled>
+                Select Technician
+              </option>
+              {/* <TechSelectOptions /> */}
+            </select>
+          </div>
         </div>
 
         <div className='row'>
@@ -99,8 +98,8 @@ const EditLogModal = ({ updateLog, current }) => {
       <div className='modal-footer'>
         <a
           href='#!'
-          className='modal-close waves-effect blue waves-light btn'
           onClick={onSubmit}
+          className='modal-close waves-effect blue waves-light btn'
         >
           Enter
         </a>
@@ -110,8 +109,8 @@ const EditLogModal = ({ updateLog, current }) => {
 };
 
 EditLogModal.propTypes = {
-  updateLog: PropTypes.func.isRequired,
   current: PropTypes.object,
+  updateLog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

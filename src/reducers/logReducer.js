@@ -10,7 +10,7 @@ import {
   CLEAR_CURRENT,
 } from '../actions/types';
 
-const initialState = { logs: null, curent: null, loading: false, error: null };
+const initialState = { logs: null, current: null, loading: false, error: null };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;

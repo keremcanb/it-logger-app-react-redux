@@ -10,7 +10,7 @@ const Logs = ({ getLogs, log: { logs, loading } }) => {
     getLogs();
   }, [getLogs]);
 
-  if (loading || logs == null) {
+  if (loading || logs === null) {
     return <Preloader />;
   }
 

@@ -16,11 +16,11 @@ const SearchBar = ({ searchLogs }) => {
         <form>
           <div className='input-field'>
             <input
+              ref={text}
+              onChange={onChange}
               id='search'
               type='search'
               placeholder='Search Logs..'
-              ref={text}
-              onChange={onChange}
             />
             <label className='label-icon' htmlFor='search'>
               <i className='material-icons'>search</i>
