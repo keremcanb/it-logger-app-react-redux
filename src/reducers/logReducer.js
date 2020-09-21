@@ -41,7 +41,11 @@ export default function (state = initialState, action) {
     case SEARCH_LOGS:
       return { ...state, logs: payload };
     case LOGS_ERROR:
-      return { ...state, error: payload };
+      console.error(payload);
+      return {
+        ...state,
+        error: payload,
+      };
     default:
       return state;
   }

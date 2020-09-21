@@ -28,6 +28,13 @@ export default (state = initialState, action) => {
         techs: state.techs.filter((tech) => tech.id !== payload),
         loading: false,
       };
+    case TECHS_ERROR:
+      console.error(payload);
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
     default:
       return state;
   }
