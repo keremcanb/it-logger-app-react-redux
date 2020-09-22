@@ -10,11 +10,7 @@ const Logs = ({ getLogs, log: { logs, loading } }) => {
     getLogs();
   }, [getLogs]);
 
-  if (loading || logs === null) {
-    return <Preloader />;
-  }
-
-  return (
+  return !(loading || logs === null) ? (
     <ul className='collection with-header'>
       <li className='collection-header'>
         <h4 className='center'>System Logs</h4>
@@ -25,6 +21,8 @@ const Logs = ({ getLogs, log: { logs, loading } }) => {
         logs.map((log) => <LogItem log={log} key={log.id} />)
       )}
     </ul>
+  ) : (
+    <Preloader />
   );
 };
 
