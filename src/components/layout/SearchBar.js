@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { searchLogs } from '../../actions/logActions';
+import { searchLogs } from '../../store/actions/logActions';
 
 const SearchBar = ({ searchLogs }) => {
   const text = useRef('');

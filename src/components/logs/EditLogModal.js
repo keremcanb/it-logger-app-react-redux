@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import TechSelectOptions from '../techs/TechSelectOptions';
-import { updateLog } from '../../actions/logActions';
+import { updateLog } from '../../store/actions/logActions';
 
 const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState('');
