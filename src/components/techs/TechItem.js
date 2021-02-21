@@ -6,7 +6,6 @@ import { deleteTech } from '../../store/actions/techActions';
 const TechItem = ({ tech: { id, firstName, lastName }, deleteTech }) => {
   const onDelete = () => {
     deleteTech(id);
-
     M.toast({ html: 'Technician deleted' });
   };
 
