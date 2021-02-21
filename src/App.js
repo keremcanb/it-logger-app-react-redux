@@ -1,37 +1,37 @@
-/* eslint-disable import/extensions */
-import React, { useEffect } from 'react';
-import M from 'materialize-css/dist/js/materialize.min.js';
-import { Provider } from 'react-redux';
-import store from './store';
-import SearchBar from './components/layout/SearchBar';
-import Logs from './components/logs/Logs';
-import AddBtn from './components/layout/AddBtn';
-import AddLogModal from './components/logs/AddLogModal';
-import EditLogModal from './components/logs/EditLogModal';
-import AddTechModal from './components/techs/AddTechModal';
-import TechListModal from './components/techs/TechListModal';
-import 'materialize-css/dist/css/materialize.min.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import Alerts from './components/layout/Alerts';
+import PrivateRoute from './components/routing/PrivateRoute';
+import ContactState from './context/contact/ContactState';
+import AuthState from './context/auth/AuthState';
+import AlertState from './context/alert/AlertState';
+import './App.css';
 
-const App = () => {
-  useEffect(() => {
-    M.AutoInit();
-  }, []);
-
-  return (
-    <Provider store={store}>
-      <>
-        <SearchBar />
-        <div className='container'>
-          <AddBtn />
-          <AddLogModal />
-          <EditLogModal />
-          <AddTechModal />
-          <TechListModal />
-          <Logs />
-        </div>
-      </>
-    </Provider>
-  );
-};
+const App = () => (
+  <AuthState>
+    <ContactState>
+      <AlertState>
+        <Router>
+          <div>
+            <Navbar />
+            <div className="container">
+              <Alerts />
+              <Switch>
+                <PrivateRoute exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+              </Switch>
+            </div>
+          </div>
+        </Router>
+      </AlertState>
+    </ContactState>
+  </AuthState>
+);
 
 export default App;

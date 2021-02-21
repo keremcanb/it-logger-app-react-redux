@@ -1,10 +1,8 @@
-/* eslint-disable import/extensions */
-/* eslint-disable jsx-a11y/no-onchange */
-import React, { useState, useEffect } from 'react';
-import TechSelectOptions from '../techs/TechSelectOptions';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import TechSelectOptions from '../techs/TechSelectOptions';
 import { updateLog } from '../../actions/logActions';
 
 const EditLogModal = ({ current, updateLog }) => {
@@ -14,7 +12,7 @@ const EditLogModal = ({ current, updateLog }) => {
 
   const modalStyle = {
     width: '75%',
-    height: '75%',
+    height: '75%'
   };
 
   useEffect(() => {
@@ -25,7 +23,7 @@ const EditLogModal = ({ current, updateLog }) => {
     }
   }, [current]);
 
-  const onSubmit = () => {
+  const onSubmitHandler = () => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
@@ -34,7 +32,7 @@ const EditLogModal = ({ current, updateLog }) => {
         message,
         attention,
         tech,
-        date: new Date(),
+        date: new Date()
       };
 
       updateLog(updLog);
@@ -48,29 +46,19 @@ const EditLogModal = ({ current, updateLog }) => {
   };
 
   return (
-    <div id='edit-log-modal' className='modal' style={modalStyle}>
-      <div className='modal-content'>
+    <div id="edit-log-modal" className="modal" style={modalStyle}>
+      <div className="modal-content">
         <h4>Enter System Log</h4>
-        <div className='row'>
-          <div className='input-field'>
-            <input
-              type='text'
-              name='message'
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
+        <div className="row">
+          <div className="input-field">
+            <input type="text" name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
           </div>
         </div>
 
-        <div className='row'>
-          <div className='input-field'>
-            <select
-              name='tech'
-              value={tech}
-              className='browser-default'
-              onChange={(e) => setTech(e.target.value)}
-            >
-              <option value='' disabled>
+        <div className="row">
+          <div className="input-field">
+            <select name="tech" value={tech} className="browser-default" onChange={(e) => setTech(e.target.value)}>
+              <option value="" disabled>
                 Select Technician
               </option>
               <TechSelectOptions />
@@ -78,13 +66,13 @@ const EditLogModal = ({ current, updateLog }) => {
           </div>
         </div>
 
-        <div className='row'>
-          <div className='input-field'>
+        <div className="row">
+          <div className="input-field">
             <p>
               <label>
                 <input
-                  type='checkbox'
-                  className='filled-in'
+                  type="checkbox"
+                  className="filled-in"
                   checked={attention}
                   value={attention}
                   onChange={() => setAttention(!attention)}
@@ -95,12 +83,8 @@ const EditLogModal = ({ current, updateLog }) => {
           </div>
         </div>
       </div>
-      <div className='modal-footer'>
-        <a
-          href='#!'
-          onClick={onSubmit}
-          className='modal-close waves-effect blue waves-light btn'
-        >
+      <div className="modal-footer">
+        <a href="#!" onClick={onSubmitHandler} className="modal-close waves-effect blue waves-light btn">
           Enter
         </a>
       </div>
@@ -110,11 +94,11 @@ const EditLogModal = ({ current, updateLog }) => {
 
 EditLogModal.propTypes = {
   current: PropTypes.object,
-  updateLog: PropTypes.func.isRequired,
+  updateLog: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  current: state.log.current,
+  current: state.log.current
 });
 
 export default connect(mapStateToProps, { updateLog })(EditLogModal);

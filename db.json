@@ -2,10 +2,10 @@
   "logs": [
     {
       "id": 1,
-      "message": "deneme1",
-      "attention": true,
-      "tech": "Sarah Wilson",
-      "date": "2020-09-21T00:21:15.832Z"
+      "message": "deneme",
+      "attention": false,
+      "tech": "Keremcan Büyüktaşkın",
+      "date": "2020-09-26T13:38:02.971Z"
     },
     {
       "message": "deneme3",
