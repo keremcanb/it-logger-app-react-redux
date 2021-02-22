@@ -11,6 +11,12 @@ import {
   CLEAR_CURRENT
 } from '../types';
 
+const headers = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+};
+
 export const setLoading = () => ({
   type: SET_LOADING
 });
@@ -31,17 +37,10 @@ export const getLogs = () => async (dispatch) => {
   }
 };
 
-export const addLog = (log) => async (dispatch) => {
+export const addLog = () => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch('/logs', {
-      method: 'POST',
-      body: JSON.stringify(log),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await res.json();
+    const { data } = await axios.post('/logs', headers);
     dispatch({
       type: ADD_LOG,
       payload: data
@@ -73,11 +72,7 @@ export const deleteLog = (id) => async (dispatch) => {
 export const updateLog = (log) => async (dispatch) => {
   try {
     setLoading();
-    const { data } = await axios.put(`/logs/${log.id}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    const { data } = await axios.put(`/logs/${log.id}`, headers);
     dispatch({
       type: UPDATE_LOG,
       payload: data

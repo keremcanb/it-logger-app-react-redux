@@ -1,4 +1,11 @@
+import axios from 'axios';
 import { GET_TECHS, ADD_TECH, DELETE_TECH, SET_LOADING, TECHS_ERROR } from '../types';
+
+const headers = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+};
 
 export const setLoading = () => ({
   type: SET_LOADING
@@ -20,23 +27,10 @@ export const getTechs = () => async (dispatch) => {
   }
 };
 
-export const addTech = (tech) => async (dispatch) => {
+export const addTech = () => async (dispatch) => {
   try {
     setLoading();
-    const { data } = await axios.post('/techs', {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    // const res = await fetch('/techs', {
-    //   method: 'POST',
-    //   body: JSON.stringify(tech),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-    // const data = await res.json();
+    const { data } = await axios.post('/techs', headers);
     dispatch({
       type: ADD_TECH,
       payload: data
