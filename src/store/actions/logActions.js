@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   GET_LOGS,
   SET_LOADING,
@@ -17,8 +18,7 @@ export const setLoading = () => ({
 export const getLogs = () => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch('/logs');
-    const data = await res.json();
+    const { data } = await axios.get('/logs');
     dispatch({
       type: GET_LOGS,
       payload: data
@@ -57,9 +57,7 @@ export const addLog = (log) => async (dispatch) => {
 export const deleteLog = (id) => async (dispatch) => {
   try {
     setLoading();
-    await fetch(`/logs/${id}`, {
-      method: 'DELETE'
-    });
+    axios.delete(`/logs/${id}`);
     dispatch({
       type: DELETE_LOG,
       payload: id
@@ -75,14 +73,11 @@ export const deleteLog = (id) => async (dispatch) => {
 export const updateLog = (log) => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch(`/logs/${log.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(log),
+    const { data } = await axios.put(`/logs/${log.id}`, {
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    const data = await res.json();
     dispatch({
       type: UPDATE_LOG,
       payload: data
@@ -98,8 +93,7 @@ export const updateLog = (log) => async (dispatch) => {
 export const searchLogs = (text) => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch(`/logs?q=${text}`);
-    const data = await res.json();
+    const { data } = await axios.get(`/logs?q=${text}`);
     dispatch({
       type: SEARCH_LOGS,
       payload: data

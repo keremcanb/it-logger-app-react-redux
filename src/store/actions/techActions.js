@@ -7,8 +7,7 @@ export const setLoading = () => ({
 export const getTechs = () => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch('/techs');
-    const data = await res.json();
+    const { data } = await axios.get('/techs');
     dispatch({
       type: GET_TECHS,
       payload: data
@@ -24,14 +23,20 @@ export const getTechs = () => async (dispatch) => {
 export const addTech = (tech) => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch('/techs', {
-      method: 'POST',
-      body: JSON.stringify(tech),
+    const { data } = await axios.post('/techs', {
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    const data = await res.json();
+
+    // const res = await fetch('/techs', {
+    //   method: 'POST',
+    //   body: JSON.stringify(tech),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+    // const data = await res.json();
     dispatch({
       type: ADD_TECH,
       payload: data
@@ -47,9 +52,7 @@ export const addTech = (tech) => async (dispatch) => {
 export const deleteTech = (id) => async (dispatch) => {
   try {
     setLoading();
-    await fetch(`/techs/${id}`, {
-      method: 'DELETE'
-    });
+    axios.delete(`/techs/${id}`);
     dispatch({
       type: DELETE_TECH,
       payload: id
